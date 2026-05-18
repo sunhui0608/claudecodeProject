@@ -1,12 +1,17 @@
 """Shared utilities: session management, stealth setup, retry logic, error logging."""
 import asyncio
 import json
+import os
 import random
 from datetime import datetime
 from pathlib import Path
 
+os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", "/opt/pw-browsers")
+
 from playwright.async_api import Browser, BrowserContext, async_playwright
-from playwright_stealth import stealth_async
+from playwright_stealth import Stealth
+
+_stealth = Stealth()
 
 SESSION_PATH = Path.home() / "qingjian" / "x_session.json"
 BASE_DIR = Path.home() / "qingjian" / "寺庙核查"
@@ -63,8 +68,9 @@ async def new_browser_context(p, headless: bool = True) -> tuple[Browser, Browse
         user_agent=USER_AGENT,
         locale="zh-TW",
         timezone_id="Asia/Taipei",
+        ignore_https_errors=True,
     )
-    await stealth_async(context)
+    await _stealth.apply_stealth_async(context)
     return browser, context
 
 

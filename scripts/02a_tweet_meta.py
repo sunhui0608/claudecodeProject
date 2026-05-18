@@ -15,7 +15,7 @@ async def main():
     captured = {}
 
     async with async_playwright() as p:
-        browser, context = await new_browser_context(p, headless=False)
+        browser, context = await new_browser_context(p, headless=True)
         page = await context.new_page()
 
         async def handle_response(response):
