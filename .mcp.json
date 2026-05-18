@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser", "chromium",
+        "--user-data-dir", "/home/user/qingjian/browser_profile",
+        "--no-sandbox",
+        "--viewport-size", "1280x900"
+      ]
+    }
+  }
+}
