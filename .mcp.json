@@ -8,7 +8,10 @@
         "--user-data-dir", "/home/user/qingjian/browser_profile",
         "--no-sandbox",
         "--viewport-size", "1280x900"
-      ]
+      ],
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "/opt/pw-browsers"
+      }
     }
   }
 }
